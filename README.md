@@ -1,0 +1,1 @@
+App Starter is a pre-initalized android project that helps ZuluCoding team to start working directly on the main code instead of wondering around to fill the basic needs to start any android project. 

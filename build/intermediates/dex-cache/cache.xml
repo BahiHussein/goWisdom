@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/home/bahi/dev/git/app_starter/app/build/intermediates/pre-dexed/debug/classes-5cd8ac68e758c16f8732ebc2284dff67be2097c7.jar"
+        jar="/home/bahi/dev/git/app_starter/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/5.2.08/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="1ed7a7a05185651f9af41ad93711cb96b66f331c"/>
+    <item
+        dex="/home/bahi/dev/git/app_starter/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-16b9e145e6de12c1a02d79d21747dcdc0e2a0c37.jar"
+        jar="/home/bahi/dev/git/app_starter/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+    <item
+        dex="/home/bahi/dev/git/goWisdom/app/build/intermediates/pre-dexed/debug/classes-3e57b85fc6fdf06f5d4de976b660472826a3f91c.jar"
+        jar="/home/bahi/dev/git/goWisdom/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+    <item
+        dex="/home/bahi/dev/git/app_starter/app/build/intermediates/pre-dexed/debug/classes-3738f67890651d32e07d3f3d184ee322e1a46e01.jar"
+        jar="/home/bahi/dev/git/app_starter/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
+    <item
+        dex="/home/bahi/dev/git/goWisdom/app/build/intermediates/pre-dexed/debug/classes-80f3ae8f9e94efff12d27d80b6117c3f98a0f301.jar"
+        jar="/home/bahi/dev/git/goWisdom/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
+    <item
+        dex="/home/bahi/dev/git/goWisdom/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-b2182ce2b40de5aa4fd666b4248e0563786a4ffb.jar"
+        jar="/home/bahi/dev/git/goWisdom/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+    <item
+        dex="/home/bahi/dev/git/app_starter/app/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-62ad47438659baeb293d90d321eae83b09ca59c5.jar"
+        jar="/home/bahi/software/android-studio/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+    <item
+        dex="/home/bahi/dev/git/app_starter/app/build/intermediates/pre-dexed/debug/classes-3cb3087f217c2906aea368ef9ec5bac194ed5f40.jar"
+        jar="/home/bahi/dev/git/app_starter/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+    <item
+        dex="/home/bahi/dev/git/goWisdom/app/build/intermediates/pre-dexed/debug/classes-5dcfffaaf4f7cfb83315ca70ce5a1b41a8d24848.jar"
+        jar="/home/bahi/dev/git/goWisdom/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/5.2.08/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="1ed7a7a05185651f9af41ad93711cb96b66f331c"/>
+
+</pre-dex-items>
