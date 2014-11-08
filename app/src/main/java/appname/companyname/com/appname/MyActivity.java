@@ -60,6 +60,9 @@ public class MyActivity extends Activity implements SimpleGestureListener {
     // Touch Filer
     private TouchFilter detector;
 
+    // Quotes Array
+    private String[] quotesAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,10 +104,17 @@ public class MyActivity extends Activity implements SimpleGestureListener {
         }
 
         // GooglePlayAds
-        if (admobBannerActive == true) {
+        if (admobBannerActive) {
             admob_banner_block();
+        }
+
+        if (admobInterstitialActive) {
             admob_interstitial_block();
         }
+
+        // Passing XML list to array
+        quotesAdapter = getResources().getStringArray(R.array.quotes_array);
+
     }
 
     public void onStart(){
@@ -281,6 +291,7 @@ public class MyActivity extends Activity implements SimpleGestureListener {
         this.detector.onTouchEvent(me);
         return super.dispatchTouchEvent(me);
     }
+
     @Override
     public void onSwipe(int direction) {
 
@@ -305,6 +316,7 @@ public class MyActivity extends Activity implements SimpleGestureListener {
 
         }
 
+        mFunctions.toast(String.valueOf(quotesAdapter.length));
         //To do after case
     }
 

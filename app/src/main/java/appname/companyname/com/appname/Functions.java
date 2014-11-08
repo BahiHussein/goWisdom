@@ -9,6 +9,7 @@ public class Functions {
     private Context mContext;
      
     public Functions(Context context){
+
         this.mContext = context;
     }
     
