@@ -1,4 +1,4 @@
-package appname.companyname.com.appname;
+package rumi.zulucoding.com.rumi;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

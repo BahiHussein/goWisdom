@@ -25,7 +25,7 @@
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Appstyle</item>
         <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Appstyle</item>
         <item name="android:actionDropDownStyle">@style/DropDownNav.Appstyle</item>
-        <item name="android:actionBarStyle">@style/ActionBar.Transparent.Appstyle</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Appstyle</item>
         <item name="android:actionModeBackground">@drawable/cab_background_top_appstyle</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_appstyle</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Appstyle</item>
@@ -34,9 +34,9 @@
     </style>
 
     <style name="ActionBar.Solid.Appstyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
-        <item name="android:background">@drawable/ab_background_textured_appstyle</item>
+        <item name="android:background">@drawable/ab_solid_appstyle</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_appstyle</item>
-        <item name="android:backgroundSplit">@drawable/ab_background_textured_appstyle</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_appstyle</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Appstyle</item>
     </style>
 

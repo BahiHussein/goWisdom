@@ -1,4 +1,4 @@
-package appname.companyname.com.appname;
+package rumi.zulucoding.com.rumi;
 
 /**
  * Created by bahi on 08/11/14.

@@ -1,11 +1,14 @@
-package appname.companyname.com.appname;
+package rumi.zulucoding.com.rumi;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,8 +18,12 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -24,16 +31,34 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
-import appname.companyname.com.appname.Rateme.AppRater;
-import appname.companyname.com.appname.TouchFilter.SimpleGestureListener;
+import java.io.IOException;
+
+import rumi.zulucoding.com.rumi.Rateme.AppRater;
+import rumi.zulucoding.com.rumi.TouchFilter.SimpleGestureListener;
 
 public class MyActivity extends Activity implements SimpleGestureListener {
 
     // UI Elements
     public Boolean fullscreen_webview = AppContent.fullscreen_webview;
+    private TextView quoteView;
+    private ImageView bg_trans;
+    private ImageView bg_main;
+    private ImageButton share;
+
+    // Context
+    private Context myApp;
+
+    // Random Wallpaper name
+    String randomWallpaperName = null;
+
+    // Random font
+    Typeface customFont;
+
+    // Random font name
+    String randomFontName = null;
 
     // Logs
-    String tag = "state";
+    String tag = "appState";
 
     // Functions
     Functions mFunctions;
@@ -57,11 +82,26 @@ public class MyActivity extends Activity implements SimpleGestureListener {
     // share
     String shareMessage = AppContent.share_message;
 
-    // Touch Filer
+    // Animation
+    private Animation bounce;
+
+    // Touch Filter
     private TouchFilter detector;
 
     // Quotes Array
     private String[] quotesAdapter;
+
+    // Quotes Tracker
+    private int QTracker = -1;
+
+    // Quotes Length
+    private int quotes_length = -1;
+
+    // Shared Pref
+    SharedPreferences pref;
+
+    // Pref Editor
+    SharedPreferences.Editor pref_editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +116,14 @@ public class MyActivity extends Activity implements SimpleGestureListener {
         // Set content view
         setContentView(R.layout.activity_my);
 
-        // UI
+        // Passing Context
+        myApp = getApplicationContext();
+
+        // Loading UI
         UI();
+
+        // Adding Animation
+        bounce = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.bounce);
 
         // Declaring mConnection Detector
         mConnectionDetector = new ConnectionDetector(getApplicationContext());
@@ -115,6 +161,20 @@ public class MyActivity extends Activity implements SimpleGestureListener {
         // Passing XML list to array
         quotesAdapter = getResources().getStringArray(R.array.quotes_array);
 
+        // Checking saved QTracker
+        pref = getApplicationContext().getSharedPreferences("QuotesPref", 0); // 0 - for private mode
+        QTracker = pref.getInt("last_quote", 0);
+
+        // Display Quote
+        //quoteView.setText(mFunctions.upperCaseFirst(quotesAdapter[QTracker]));
+
+        quotes_length = quotesAdapter.length -1;
+        randomQuote();
+        randomWallpaper();
+        randomFont();
+
+        //Share icon
+        shareOnClick();
     }
 
     public void onStart(){
@@ -150,6 +210,11 @@ public class MyActivity extends Activity implements SimpleGestureListener {
         if (adView != null) {
             adView.pause();
         }
+
+        // Saving the last viewed quote number
+        pref_editor = pref.edit();
+        pref_editor.putInt("QuotesPref", QTracker);
+        pref_editor.commit();
     }
 
     public void onDestroy(){
@@ -175,7 +240,12 @@ public class MyActivity extends Activity implements SimpleGestureListener {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         if (id == R.id.action_settings) {
+            return true;
+        }
+        else if (id == R.id.action_share){
+            sharepost();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -183,7 +253,26 @@ public class MyActivity extends Activity implements SimpleGestureListener {
 
     // UI function
     public void UI(){
+
        //UI elements decliration
+        quoteView = (TextView)findViewById(R.id.quoteView);
+        bg_trans = (ImageView)findViewById(R.id.bg_trans);
+        bg_main = (ImageView)findViewById(R.id.bg_main);
+        share = (ImageButton)findViewById(R.id.share_);
+
+        try {
+            bg_trans.setImageDrawable(mFunctions.getAssetImagePng(myApp, "overlay"));
+        } catch (IOException e){
+            Log.d(tag,"can not load images");
+        }
+
+        try {
+            bg_main.setImageDrawable(mFunctions.getAssetImageJpg(myApp, "img_1"));
+        } catch (IOException e){
+            Log.d(tag,"can not load images");
+        }
+
+        Log.d(tag, "Finished loading UI");
     }
 
     // Hide action bar
@@ -245,7 +334,7 @@ public class MyActivity extends Activity implements SimpleGestureListener {
         shareintent.setType("text/plain");
         String xshare = "link";
 
-            xshare = shareMessage; //add other condition
+            xshare = shareMessage + " \" " + (quotesAdapter[QTracker].toUpperCase()) +  " \" "; //add other condition
 
         shareintent.putExtra(Intent.EXTRA_TEXT, xshare);
         startActivity(Intent.createChooser(shareintent, "How do you want to share?"));
@@ -295,34 +384,75 @@ public class MyActivity extends Activity implements SimpleGestureListener {
     @Override
     public void onSwipe(int direction) {
 
-        switch (direction) {
+        if (direction == TouchFilter.SWIPE_RIGHT){
 
-            case TouchFilter.SWIPE_RIGHT :
+            if (QTracker == 0) {
+                QTracker = quotes_length;
+            } else {
+                QTracker = QTracker -1;
+            }
 
-                //To do swipe right
-                break;
-            case TouchFilter.SWIPE_LEFT :
+        } else if (direction == TouchFilter.SWIPE_LEFT){
 
-                //To do swipe left
-                break;
-            case TouchFilter.SWIPE_DOWN :
+            if (QTracker == quotes_length) {
+                QTracker = 0;
+            } else {
+                QTracker = QTracker +1;
+            }
 
-                //To do swipe down
-                break;
-            case TouchFilter.SWIPE_UP :
+        } else if (direction == TouchFilter.SWIPE_DOWN){
 
-                //To do swipe up
-                break;
+        } else if (direction == TouchFilter.SWIPE_UP){
 
         }
 
-        mFunctions.toast(String.valueOf(quotesAdapter.length));
-        //To do after case
+        randomQuote();
+        randomWallpaper();
+        randomFont();
     }
 
     @Override
     public void onDoubleTap() {
-        Toast.makeText(this, "Double Tap", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "Double Tap", Toast.LENGTH_SHORT).show();
+    }
+
+    public void randomQuote(){
+        quoteView.setText(quotesAdapter[QTracker].toUpperCase());
+        quoteView.startAnimation(bounce);
+    }
+
+    public void randomWallpaper(){
+
+        // Generating Random name
+        randomWallpaperName = "img_" + String.valueOf((mFunctions.randomizeInRange(9)+1));
+
+        // Changing the wallpaper
+        try {
+            bg_main.setImageDrawable(mFunctions.getAssetImageJpg(myApp, randomWallpaperName));
+        } catch (IOException e){
+            Log.d(tag,"can not load images");
+        }
+    }
+
+    public void randomFont(){
+        // Generating random name
+        randomFontName = "font/font_" + String.valueOf((mFunctions.randomizeInRange(5)+1) + ".ttf");
+
+        // Changing Font
+        customFont = Typeface.createFromAsset(getAssets(),randomFontName);
+        quoteView.setTypeface(customFont);
+    }
+
+    public void shareOnClick(){
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sharepost();
+            }
+        });
+
+
     }
 
 }

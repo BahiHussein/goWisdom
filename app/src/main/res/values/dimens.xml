@@ -4,8 +4,14 @@
     <dimen name="activity_vertical_margin">0dp</dimen>
 
     <!-- SplashScreen's (Logo) Height -->
-    <dimen name="splash_logo_height">100dp</dimen>
+    <dimen name="splash_logo_height">250dp</dimen>
 
     <!-- SplashSreen's (Logo) Top Margin -->
     <dimen name="splash_logo_margin_top">120dp</dimen>
+
+    <!-- Quotes font size-->
+    <dimen name="quote_font_size">32sp</dimen>
+
+    <!-- Quotes margin-->
+    <dimen name="quote_margin">14dp</dimen>
 </resources>

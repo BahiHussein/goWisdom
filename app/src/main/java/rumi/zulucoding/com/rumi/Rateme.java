@@ -1,4 +1,4 @@
-package appname.companyname.com.appname;
+package rumi.zulucoding.com.rumi;
 
 import android.app.Dialog;
 import android.content.Context;

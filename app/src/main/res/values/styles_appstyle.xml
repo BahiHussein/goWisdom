@@ -25,7 +25,7 @@
         <item name="dropDownListViewStyle">@style/DropDownListView.Appstyle</item>
         <item name="actionBarTabStyle">@style/ActionBarTabStyle.Appstyle</item>
         <item name="actionDropDownStyle">@style/DropDownNav.Appstyle</item>
-        <item name="actionBarStyle">@style/ActionBar.Transparent.Appstyle</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Appstyle</item>
         <item name="actionModeBackground">@drawable/cab_background_top_appstyle</item>
         <item name="actionModeSplitBackground">@drawable/cab_background_bottom_appstyle</item>
         <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Appstyle</item>
